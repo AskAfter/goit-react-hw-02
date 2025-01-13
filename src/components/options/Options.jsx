@@ -18,12 +18,14 @@ export default function Options({
       <Button onClick={() => handleClick(button)} name={button} />
     </li>
   ));
-  if (showReset) {
-    markup.push(
-      <li key="reset">
-        <Button onClick={resetFeedback} name="Reset" />
-      </li>
-    );
-  }
-  return <ul className={styles.list}>{markup}</ul>;
+  return (
+    <ul className={styles.list}>
+      {markup}
+      {showReset && (
+        <li key="reset">
+          <Button onClick={resetFeedback} name="Reset" />
+        </li>
+      )}
+    </ul>
+  );
 }

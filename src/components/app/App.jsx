@@ -4,6 +4,7 @@ import './App.css';
 import Description from '../description/Description';
 import Options from '../options/Options';
 import Feedback from '../feedback/Feedback';
+import Notification from '../notification/Notification';
 
 function App() {
   const [feedback, setFeedback] = useState(() => {
@@ -17,10 +18,10 @@ function App() {
     }));
   }
   useEffect(() => {
-    window.localStorage.setItem('Feedback', JSON.stringify(feedback));
+    localStorage.setItem('Feedback', JSON.stringify(feedback));
   }, [feedback]);
   function resetFeedback() {
-    window.localStorage.clear();
+    localStorage.removeItem('Feedback');
     setFeedback({
       good: 0,
       neutral: 0,
@@ -46,7 +47,7 @@ function App() {
       {totalFeedback !== 0 ? (
         <Feedback names={feedback} positiveFeedback={positiveFeedback} />
       ) : (
-        <p className="no-feedback">No feedback yet</p>
+        <Notification />
       )}
     </>
   );
